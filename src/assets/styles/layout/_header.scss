@@ -60,7 +60,9 @@
           line-height: 150%;
           color: transparent;
           -webkit-text-stroke: 1px #808080;
-          animation: stroke-anim 3s infinite alternate;
+          @include tablet{
+            font-size: 20px;
+          }          
         }
       }
       .header__menu-item + .header__menu-item{
