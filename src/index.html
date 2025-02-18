@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MAGWY </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="manifest" href="favicons/site.webmanifest">
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="assets/styles/main.scss">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header" id="header">
+        <div class="container header__container"><a class="header__logo" href="/"> 
+            <svg class="icon-logo">
+              <use xlink:href="#icon-colored-logo"></use>
+            </svg></a>
+          <ul class="header__menu"> 
+            <li class="header__menu-item"><a class="header__menu-link" href="#">УСЛУГИ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">АБОНЕМЕНТЫ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">ПОЧЕМУ МЫ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">ОБОРУДОВАНИЕ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">АКЦИИ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">FAQ</a></li>
+            <li class="header__menu-item"><a class="header__menu-link" href="#">КОНТАКТЫ</a></li>
+          </ul>
+          <div class="header__contact">
+            <div class="header__contact-icon"> 
+              <svg class="icon-phone">
+                <use xlink:href="#icon-monochrome-phone"></use>
+              </svg>
+            </div>
+            <a class="btn-accent header__btn" href="#"><span>ОСТАВИТЬ ЗАЯВКУ</span></a>
+          </div>
+        </div>
+      </header>
+      <div class="header header--mobile">
+        <div class="container header__container">
+          <div class="header__burger" data-toggle="header"><span></span></div><a class="header__logo" href="/"> 
+            <svg class="icon-logo">
+              <use xlink:href="#icon-colored-logo"></use>
+            </svg></a>
+          <div class="header__contact">
+            <div class="header__contact-icon"> 
+              <svg class="icon-phone">
+                <use xlink:href="#icon-monochrome-phone"></use>
+              </svg>
+            </div>
+            <a class="btn-accent header__btn" href="#"><span>ОСТАВИТЬ ЗАЯВКУ</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="content">    
+        <section class="hero">
+          <div class="container hero__container">
+            <div class="hero__info">
+              <h1 class="hero__title">Полет Илона Маска <br>и&nbsp;DOGIE&nbsp;COIN</h1>
+              <p class="hero__text">В прошлый четверг все офигели от полета DOGIE&nbsp;COIN&nbsp;на марс.</p>
+              <a class="btn-accent hero__btn" href="#"><span>ОСТАВИТЬ ЗАЯВКУ</span></a>
+            </div>
+          </div>
+        </section>
+        <section class="posts">
+          <div class="container posts__container">
+            <h2 class="posts__title">Карточки</h2>
+            <div class="posts__items"></div>
+            <button class="btn-accent posts__btn" id="load-more"><span>ЗАГРУЗИТЬ ЕЩЕ</span></button>
+          </div>
+        </section>
+      </div>
+      <script type="module" src="assets/js/main.js"></script>
+    </div>
+  </body>
+</html>

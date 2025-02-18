@@ -1,0 +1,86 @@
+@use './variables' as *;
+@use './fonts' as *;
+@mixin skewBtn($w,$h){
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  width: $w;
+  height: $h;
+  color: $light;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  &[disabled]{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+  }
+  span{
+    position: relative;
+    z-index: 1;
+  }
+  &::before {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 100%;
+      background-color: $light;
+      transform: skew(-17deg);
+      top: 0;
+      right: -10px;
+  }
+  &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: $buttonColor;
+      transform: skew(-17deg);
+    }
+}
+@mixin skew($bc){
+  &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid $bc;
+      transform: skew(-17deg);
+    }
+}
+
+@mixin lgx{
+  @media (max-width: 1760px) {
+    @content;
+  }
+}
+@mixin lg{
+  @media (max-width: 1440px) {
+    @content;
+  }
+}
+@mixin notebook{
+  @media (max-width: 1366px) {
+    @content;
+  }
+}
+
+@mixin iPad{
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+@mixin tablet{
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+@mixin xs{
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+

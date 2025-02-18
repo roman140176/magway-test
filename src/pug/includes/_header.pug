@@ -1,0 +1,33 @@
+header.header#header
+  .container.header__container
+    a.header__logo(href="/") 
+      +icon('colored','logo', 'icon-logo')
+    ul.header__menu 
+      li.header__menu-item
+        a.header__menu-link(href="#") УСЛУГИ
+      li.header__menu-item
+        a.header__menu-link(href="#") АБОНЕМЕНТЫ
+      li.header__menu-item
+        a.header__menu-link(href="#") ПОЧЕМУ МЫ
+      li.header__menu-item
+        a.header__menu-link(href="#") ОБОРУДОВАНИЕ
+      li.header__menu-item
+        a.header__menu-link(href="#") АКЦИИ
+      li.header__menu-item
+        a.header__menu-link(href="#") FAQ
+      li.header__menu-item
+        a.header__menu-link(href="#") КОНТАКТЫ
+    .header__contact
+      .header__contact-icon 
+        +icon('monochrome','phone','icon-phone')
+      +button('a', 'ОСТАВИТЬ ЗАЯВКУ', 'header__btn','#')
+.header.header--mobile
+  .container.header__container
+    .header__burger(data-toggle="header")
+      span
+    a.header__logo(href="/") 
+      +icon('colored','logo', 'icon-logo')  
+    .header__contact
+      .header__contact-icon 
+        +icon('monochrome','phone','icon-phone')
+      +button('a', 'ОСТАВИТЬ ЗАЯВКУ', 'header__btn','#')
