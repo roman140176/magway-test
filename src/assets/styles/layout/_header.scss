@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../mixins' as *;
+@use "sass:color";
 
 .header {
   padding: 28px 0;
@@ -199,5 +200,25 @@
         left: 0;
       }
     }
+  }
+}
+
+// @keyframes stroke-anim 
+@media (min-width: 1280px) {
+  .header__contact:hover {
+    .header__contact-icon::after {
+        transform: skew(0);
+      }
+      .header__btn::after {
+        background-color: color.adjust($buttonColor, $lightness: -15%);
+        transform: skew(0);
+      }
+
+      .header__btn::before {
+        background-color: color.adjust($light, $lightness: 10%);
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+        transform: skew(0);
+        right: -5px;
+      }
   }
 }

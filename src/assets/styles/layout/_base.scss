@@ -65,18 +65,56 @@ html,body{
   @include skewBtn(263px, 60px);
 }
 .read-btn{
-  color: $light;
-  background-color: $primary;
+  position: relative;
+  color: $light;  
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   font-family: $secondaryFont;
   font-weight: 600;
+  overflow: hidden;
+  
+  &::before{
+    content: "";
+    position: absolute;
+    inset:0;
+    background-color: $primary;
+    transition: all 0.3s ease-in-out;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    border: 1px solid $primary;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+  }
   span{
+    position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 113px;
+    
   }
+
+ @media (min-width: 1280px) {
+  &:hover {
+      &::before {
+        opacity: 0;
+      }
+  
+      &::after {
+        opacity: 1;
+      }
+  
+      span {
+        color: $primary;
+      }
+    }
+ }
+ 
 }
