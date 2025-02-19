@@ -12,6 +12,9 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 30px;
+    background: $bodyColor url('../images/loading.svg') no-repeat center center;
+    background-size: 40px 41px;
+    min-height: 300px;
     @include lgx{
       grid-gap: 16px;
     }

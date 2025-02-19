@@ -1,31 +1,28 @@
-import smoothscroll from 'smoothscroll-polyfill';
-smoothscroll.polyfill();
-
 const API_URL = "https://dummyjson.com/posts";
 const USERS_API_URL = "https://dummyjson.com/users";
 const MAX_CARDS = 30;
 const LOAD_COUNT = 5;
-const TITLE_LIMIT = 54; // Ограничение длины заголовка
-const BODY_LIMIT = 174; // Ограничение длины текста поста
+const TITLE_LIMIT = 54;
+const BODY_LIMIT = 174;
 
 let loadedCount = 0;
 const container = document.querySelector(".posts__items");
 export const loadMoreBtn = document.getElementById("load-more");
 
-// Категории для постов
+if (!container) console.error("Ошибка: контейнер .posts__items не найден!");
+if (!loadMoreBtn) console.error("Ошибка: кнопка #load-more не найдена!");
+
 const CATEGORIES = ["Technology", "Nature", "Lifestyle"];
 
-// Функция для выбора одной случайной категории
 function getRandomCategory() {
   return CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
 }
 
-// Функция для обрезки заголовка и тела поста
 function truncateText(text, limit) {
+  if (limit < 3) return text;
   return text.length > limit ? text.slice(0, limit - 3) + "..." : text;
 }
 
-// Функция для получения случайной даты в прошлом
 function getRandomDate() {
   const start = new Date(2015, 0, 1);
   const end = new Date();
@@ -33,31 +30,40 @@ function getRandomDate() {
 
   return {
     readable: randomDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" }),
-    iso: randomDate.toISOString().split("T")[0] // Формат YYYY-MM-DD для datetime
+    iso: randomDate.toISOString().split("T")[0]
   };
 }
 
-// Функция получения постов и авторов
 async function fetchPostsWithAuthors(start, limit) {
-  const postsResponse = await fetch(`${API_URL}?limit=${limit}&skip=${start}`);
-  const usersResponse = await fetch(USERS_API_URL);
-  const postsData = await postsResponse.json();
-  const usersData = await usersResponse.json();
+  try {
+    const postsResponse = await fetch(`${API_URL}?limit=${limit}&skip=${start}`);
+    const usersResponse = await fetch(USERS_API_URL);
 
-  return postsData.posts.map(post => ({
-    ...post,
-    author: usersData.users.find(user => user.id === post.userId)?.firstName || "Unknown",
-    date: getRandomDate(),
-    category: getRandomCategory()
-  }));
+    if (!postsResponse.ok || !usersResponse.ok) {
+      throw new Error(`Ошибка загрузки данных: ${postsResponse.status}, ${usersResponse.status}`);
+    }
+
+    const postsData = await postsResponse.json();
+    const usersData = await usersResponse.json();
+
+    const posts = Array.isArray(postsData.posts) ? postsData.posts : [];
+
+    return posts.map(post => ({
+      ...post,
+      author: usersData.users.find(user => user.id === post.userId)?.firstName || "Unknown",
+      date: getRandomDate(),
+      category: getRandomCategory()
+    }));
+  } catch (error) {
+    console.error("Ошибка при загрузке постов и авторов:", error);
+    return [];
+  }
 }
 
-// Функция для генерации случайного изображения без VPN
 function getRandomImage(postId) {
   return `https://placeholder.pagebee.io/api/plain/900/800?text=Post${postId}&bg=C2AB81&color=FFFFFF`;
 }
 
-// Функция создания карточки поста
 function createCard(post) {
   const card = document.createElement("article");
   card.className = "posts__card";
@@ -83,23 +89,24 @@ function createCard(post) {
   return card;
 }
 
-// Функция загрузки постов (без автоскролла)
 export const loadMorePosts = async (scroll = false) => {
   if (loadedCount >= MAX_CARDS) return;
+  if (!container) return;
 
   fetchPostsWithAuthors(loadedCount, LOAD_COUNT)
     .then(posts => {
       posts.forEach(post => container.appendChild(createCard(post)));
       loadedCount += LOAD_COUNT;
 
-      if (loadedCount >= MAX_CARDS) {
+      if (loadedCount >= MAX_CARDS && loadMoreBtn) {
         loadMoreBtn.disabled = true;
         loadMoreBtn.querySelector("span").textContent = "Больше нет постов";
       }
     })
     .finally(() => {
-      if (scroll) {
+      if (scroll && loadMoreBtn) {
         loadMoreBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        container.style.background='none'
       }
     });
-}
+};
