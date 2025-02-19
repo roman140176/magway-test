@@ -1,3 +1,6 @@
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
+
 const API_URL = "https://dummyjson.com/posts";
 const USERS_API_URL = "https://dummyjson.com/users";
 const MAX_CARDS = 30;

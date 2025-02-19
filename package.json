@@ -24,6 +24,7 @@
     "vite-plugin-svg-sprite": "^0.6.2"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "smoothscroll-polyfill": "^0.4.4"
   }
 }
