@@ -6,7 +6,7 @@ _Scss_
 _vanila js_  
 
 **нода** ^20.18.3  
-output Dir **dest**  
+output Dir **dist**  
 *Скрипты сборки,естественно в package.json*  
 сервис для фейкового API - _dummyjson.com_  
 **PixelPerfect** не использован  
