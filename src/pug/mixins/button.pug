@@ -1,4 +1,0 @@
-mixin button(tag, text, className, href)
-  - var tagName = tag === 'a' ? 'a' : 'button'
-  #{tagName}(href=tag === 'a' ? href : false class=`btn-accent ${className}`)&attributes(attributes)
-    span #{text}
